@@ -1,0 +1,35 @@
+{% extends 'block.html' %}
+{% load staticfiles %}
+{% load thumbnail %}
+
+{% block extra_css %}{{ block.super }}
+<link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block text %}
+    <div class="large-12 columns">
+        <div class="panel radius">
+        <a href="/" class="fi-home"> На Главную </a>
+        <h1>{{ albums.title }}</h1>
+            <ul class="clearing-thumbs" data-clearing>
+                {% for photo in photos %}
+                    <li><a href="{{ photo.img.url }}" class="th radius photo">
+                        {% thumbnail photo.img "250x250" crop='center' as im %}
+                        <img src="{{ im.url }}" alt="{{ photo.title }}" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                    </a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js_bottom %}{{ block.super }}
+<!-- Initialize Foundation JS -->
+    <script>
+    $(document).ready(function() {
+        $(document).foundation();
+    })
+    </script>
+{% endblock %}
+

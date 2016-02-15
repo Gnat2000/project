@@ -1,0 +1,29 @@
+{% extends 'block.html' %}
+{% load staticfiles %}
+
+{% block title %}
+Авторизация
+{% endblock %}
+
+{% block extra_css %}{{ block.super }}
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block login %}
+    <div class="large-offset-3 large-6 columns">
+        <div class="panel radius centre shadow">
+            <form action="/accounts/login/" method="post">
+                {% csrf_token %}
+                <label for="username"> Имя пользователя </label>
+                <input type="text" placeholder="Login" name="username" id="username">
+                <label for="password"> Пароль </label>
+                <input type="password" placeholder="Password" name="password" id="password">
+                {% if login_error %}
+                    <label class="error">{{ login_error }}</label>
+                {% endif %}
+                    <input class="button success tiny radius" type="submit" value="Войти">
+                    <div class="button success tiny right radius"><a class="decor" href="/accounts/register/">Регистрация</a></div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

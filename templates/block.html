@@ -1,0 +1,27 @@
+<!doctype html>{% load staticfiles %}
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+		<title>{% block title %}{% endblock %}</title>
+		<meta name="keywords" content="Полководцы, Русский, Россия" />
+		<meta name="description" content="Полководцы России" />
+		<link href="{% static 'static/img/medal.jpg' %}" rel="shortcut icon" />
+		<link href="{% static 'static/css/foundation.css' %}" type="text/css" rel="stylesheet" />
+		{% block extra_css %}{% endblock %}
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet" />
+		<script type="text/javascript" src="{%  static 'static/js/jquery-1.11.3.min.js' %}"></script>
+		<script type="text/javascript" src="{%  static 'static/js/foundation.min.js' %}"></script>
+		<script type="text/javascript" src="{%  static 'static/js/foundation/foundation.topbar.js' %}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+	</head>
+	<body>
+		<div class="row">
+			{% block article %}{% endblock %}
+			{% block login %}{% endblock %}
+			{% block text %}{% endblock %}
+		</div>
+	{% block extra_js_bottom %}{% endblock %}
+	</body>
+</html>

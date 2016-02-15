@@ -1,0 +1,34 @@
+{% extends 'block.html' %}
+{% load embed_video_tags %}
+
+{% load staticfiles %}
+{% load i18n mptt_tags %}
+
+{% block extra_css %}{{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/css.css' %}">
+{% endblock %}
+
+{% block title %}
+{{ category }}
+{% endblock %}
+
+{% block article %}
+{% include 'blog/includes/top_bar.html' %}
+<div class="large-12 columns panel radius">
+    <a href="/" class="fi-home"> На Главную </a>
+    <h6 class="right"> Категория: {{ category }}</h6>
+    {% for post in category_blog %}
+    <h3><a href="/blog/{{ post.slug }}/">{{ post.title }}</a></h3>
+    <h6>Дата публикации: {{ post.date }}</h6>
+    <ul type="none" class="radius list">
+        <li><article><img src="{{ post.image.url }}" class="th leftfoto" alt="" title="{{ post.title }}" width="250px" height="250px">
+            {% autoescape off %}{{ post.body|truncatewords:150 }}{% endautoescape %}
+        </article></li>
+    </ul>
+    <p><a href="/blog/addlike/{{ post.id }}/"><img src="{% static 'img/like.jpg' %}" alt="Like" title="Likes" width="25px" height="25px"></a> {{ post.likes }} </p>
+    <a href="/blog/{{ post.slug }}/" class="secondary button success tiny radius right">Подробнее</a>
+    <hr>
+
+    {% endfor %}
+</div>
+{% endblock %}

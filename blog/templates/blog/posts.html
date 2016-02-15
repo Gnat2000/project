@@ -1,0 +1,49 @@
+{% extends 'block.html' %}
+{% load staticfiles %}
+{% load thumbnail %}
+
+{% block extra_css %}{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'css/css.css' %}">
+{% endblock %}
+
+{% block title %}
+Военачальники России
+{% endblock %}
+
+{% block article %}
+{% include 'blog/includes/top_bar.html' %}
+<div class="large-12 columns panel radius">
+    <header>
+        <h1> Военачальники России </h1>
+        <hr>
+    </header>
+    {% for post in posts %}
+        <section>
+            <h3><a href="/blog/{{ post.slug }}/">{{ post.title }}</a></h3>
+            <h6> Дата публикации: {{ post.date }} </h6>
+            <ul type="none" class="th radius">
+                {% thumbnail post.image "250x350" crop='center' as im %}
+                <li><img src="{{ post.image.url }}" class="leftfoto" title="{{ post.title }}" width="{{ im.width }}" height="{{ im.height }}">
+                {% endthumbnail %}
+                    {% autoescape off %}<!--Tags CK-editor-->
+                    {{ post.body|linebreaks|truncatewords:150 }}
+                    {% endautoescape %}
+                </li>
+            </ul>
+            <p><a href="/blog/addlike/{{ post.id }}/"><img src="{% static 'img/like.jpg' %}" alt="Like" title="Likes" width="25px" height="25px"></a> {{ post.likes }} </p>
+            <a href="/blog/{{ post.slug }}/" class="secondary button success tiny radius right">Подробнее</a>
+            <hr>
+        </section>
+    {% endfor %}
+{% include 'blog/includes/pagination.html' %}
+        <hr>
+    <footer>
+        <ul class="breadcrumbs">
+            <li><a href="/">Главная</a></li>
+            <li class="current">Военачальники</li>
+            <li><a href="/gallery/">Галерея</a></li>
+        </ul><!--Pagination Breadcrumbs-->
+    </footer>
+</div>
+{% endblock %}
+

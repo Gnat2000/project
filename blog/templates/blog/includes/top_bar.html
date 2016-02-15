@@ -1,0 +1,44 @@
+{% load i18n mptt_tags %}
+
+<div class="top-bar">
+    <nav class="top-bar" data-topbar role="navigation" data-options="is_hover: false">
+        <section class="top-bar-section">
+            <ul class="left">
+                {% recursetree projects %}
+                    <li class="has-dropdown">
+                        <a  href="/category/get/{{ node.id }}/" title="{% blocktrans with project=node %}Show all entries in {{ project }}{% endblocktrans %}">{{ node }}</a>
+                        {% if not node.is_leaf_node %}
+                            <ul class="project-children project-{{ node.slug }} dropdown">
+                                {{ children }}
+                            </ul>
+                        {% endif %}
+                    </li>
+                {% endrecursetree %}
+                {% if not projects %}
+                    <li>
+                        {% trans "No projects yet." %}
+                    </li>
+                {% endif %}
+                <li class="divider"></li>
+                <li><a href="/gallery/">Галерея</a></li>
+                <li class="divider"></li>
+            </ul>
+            <ul class="right">
+                <li class="divider"></li>
+                <li><a href="/accounts/register/"><i class="fi-torso"></i> Sign Up</a></li>
+                <li class="divider"></li>
+                {% if username %}
+                <li><a href="/accounts/logout/"><i class="fi-checkbox"></i> Logout ({{ username }})</a></li>
+                {% else %}
+                <li class="active"><a href="/accounts/login/"><i class="fi-info"></i> Login</a></li>
+                {% endif %}
+            </ul>
+        </section>
+    </nav>
+</div>
+
+
+  <script>
+    $(document).foundation();
+  </script>
+
