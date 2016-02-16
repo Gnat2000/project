@@ -24,6 +24,8 @@ class Category(MPTTModel):
 
     class MPTTMeta:
         order_insertion_by = ['name']
+
+
 mptt.register(Category, order_insertion_by=['name'])
 
 
@@ -46,12 +48,13 @@ class BlogPost(models.Model):
     def __unicode__(self):
         return self.title
 
-# Preview "image" in Administration Interface
+    # Preview "image" in Administration Interface
     def preview(self):
         if self.image:
             return u'<a href="{0}" target="_blank"><img src="{0}" width="50"/></a>'.format(self.image.url)
         else:
             return '(Нет изображения)'
+
     preview.short_description = 'Изображение'
     preview.allow_tags = True
 

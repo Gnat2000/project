@@ -19,10 +19,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'c(6h_7y!%p8krpfnz=)4gz%2@m5mj+^)uy!cw#y&pc!fu0n)c)'
+SECRET_KEY = '...'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -86,9 +86,9 @@ WSGI_APPLICATION = 'Blog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'blog_database',
-        'USER': '',
-        'PASSWORD': '',
+        'NAME': '...',
+        'USER': '...',
+        'PASSWORD': '...',
         'HOST': '',  # Set to empty string for localhost.
         'PORT': '',  # Set to empty string for default.
     }

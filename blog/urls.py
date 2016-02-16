@@ -16,7 +16,6 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^blog/addlike/(?P<blog_id>\d+)/$', 'blog.views.add_like'),
