@@ -138,7 +138,7 @@ UTOSLUG_SLUGIFY_FUNCTION = 'pytils.translit.translify'
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
 CKEDITOR_CONFIGS = {
-    'default': {'toolbar': 'None', },
+    'default': {'toolbar': 'None',},
 }
 
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
@@ -151,3 +151,10 @@ try:
     from local_settings import *
 except:
     pass
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'our_db.sqlite3'),
+    }
+}

@@ -6,6 +6,7 @@ settings/local.py
 __pycache__/
 *.py[cod]
 *$py.class
+Blog/local_settings.py
 
 # C extensions
 *.so
